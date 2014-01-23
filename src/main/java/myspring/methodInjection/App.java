@@ -1,12 +1,11 @@
-package myspring;
+package myspring.methodInjection;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import bean.BeanA;
-import bean.SuperBean;
+import bean.methodInjection.SuperBean;
 
 /**
- * Hello world!
+ * 方法注入测试
  *
  */
 public class App 
@@ -14,8 +13,8 @@ public class App
     public static void main( String[] args )
     {
     	ClassPathXmlApplicationContext context= new ClassPathXmlApplicationContext("context.xml");
+    	testEqual(context,"superBean");
     	testEqual(context,"beanA");
-    	testEqual(context,"beanAWithoutLookUp");
     }
     
     public static void testEqual(ClassPathXmlApplicationContext context,String beanName){

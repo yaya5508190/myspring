@@ -1,4 +1,4 @@
-package bean;
+package bean.methodInjection;
 
 public abstract class SuperBean {
 	protected BeanB beanB;

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+							http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+							http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+		<!--支持注解-->
+		<context:annotation-config/>
+		<!--方法注入-->
+		<bean id="superBean" class="bean.methodInjection.SuperBean">
+			<lookup-method name="getBeanB" bean="beanB"/>
+		</bean>
+		<bean id="beanA" class="bean.methodInjection.BeanA">
+			<property name="beanB" ref="beanB"/>
+		</bean>
+		<bean id="beanB" class="bean.methodInjection.BeanB" scope="prototype"></bean>
+		<!--ref与idref的区别-->
+		<bean id="refbeanA" class="bean.refAndIdref.BeanA" >
+			<property name="beanBId">
+				<!--local属性一定要容器内存在该bean否则会抛出异常-->
+				<idref local="refbeanB"/>
+				<!--<idref bean="refbeanB"/>等同于<property name="beanBId" value="refbeanB" />-->
+			</property>
+			<property name="beanB" ref="refbeanB"/>
+		</bean>
+		<bean id="refbeanB" class="bean.refAndIdref.BeanB" ></bean>
+		<!--Aware-->
+		<bean id="applicationContextAwareImp" class="bean.aware.ApplicationContextAwareImp"></bean>
+		<bean id="beanNameAwareImp" class="bean.aware.BeanNameAwareImp"></bean>
+		<bean id="applicationContextAuto" class="bean.aware.ApplicationContextByAutowire" autowire="byType"></bean>
+		<!--thread scope-->
+		<bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+			<property name="scopes">
+				<map>
+					<entry key="thread">
+						<bean class="org.springframework.context.support.SimpleThreadScope"/>
+					</entry>
+				</map>
+			</property>
+		</bean>
+		<bean id="threadScopeBean" class="bean.customScope.Bean" scope="thread">
+			<aop:scoped-proxy/>
+		</bean>
+		<bean id="myThread1" class="myspring.customScope.MyThread1" scope="prototype">
+			<property name="bean" ref="threadScopeBean"></property>
+		</bean>
+		
+		<!--lifecycleMechanisms-->
+		<bean id="lifeBean" class="bean.lifecycleMechanisms.Bean" init-method="init" destroy-method="des"></bean>
+</beans>

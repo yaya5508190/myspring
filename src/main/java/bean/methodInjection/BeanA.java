@@ -1,6 +1,6 @@
-package bean;
+package bean.methodInjection;
 
-public class BeanAWithoutLookUp extends SuperBean{
+public class BeanA extends SuperBean{
 
 	@Override
 	public BeanB getBeanB()  {
