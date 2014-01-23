@@ -46,6 +46,8 @@
 			<property name="bean" ref="threadScopeBean"></property>
 		</bean>
 		
-		<!--lifecycleMechanisms-->
+		<!--lifecycleMechanisms
 		<bean id="lifeBean" class="bean.lifecycleMechanisms.Bean" init-method="init" destroy-method="des"></bean>
+		-->
+		<bean id="BeanForLifecycle" class="bean.lifecycleMechanisms.BeanForLifecycle"></bean>
 </beans>

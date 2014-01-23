@@ -2,7 +2,6 @@ package bean.lifecycleMechanisms;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.annotation.security.PermitAll;
 
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
@@ -43,8 +42,5 @@ public class Bean implements InitializingBean,DisposableBean{
 	
 	public void des(){
 		System.out.println(7);
-		System.out.println(Integer.MAX_VALUE);
-		System.out.println(Integer.MIN_VALUE);
-		
 	}
 }
