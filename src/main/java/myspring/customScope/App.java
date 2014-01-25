@@ -1,5 +1,7 @@
 package myspring.customScope;
 
+import myspring.util.MyUtil;
+
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App {
@@ -15,7 +17,7 @@ public class App {
 		t2.start();
 		t3.start();*/
 		
-		ClassPathXmlApplicationContext context= new ClassPathXmlApplicationContext("context.xml");
+		ClassPathXmlApplicationContext context = (ClassPathXmlApplicationContext) MyUtil.getContext();
 		Thread t1 = (Thread) context.getBean("myThread1");
 		Thread t2 = (Thread) context.getBean("myThread1");
 		Thread t3 = (Thread) context.getBean("myThread1");

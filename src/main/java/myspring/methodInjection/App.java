@@ -1,5 +1,7 @@
 package myspring.methodInjection;
 
+import myspring.util.MyUtil;
+
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import bean.methodInjection.SuperBean;
@@ -12,7 +14,7 @@ public class App
 {
     public static void main( String[] args )
     {
-    	ClassPathXmlApplicationContext context= new ClassPathXmlApplicationContext("context.xml");
+    	ClassPathXmlApplicationContext context = (ClassPathXmlApplicationContext) MyUtil.getContext();
     	testEqual(context,"superBean");
     	testEqual(context,"beanA");
     }

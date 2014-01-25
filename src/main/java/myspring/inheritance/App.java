@@ -1,16 +1,15 @@
-package myspring.lifecycleMechanisms;
+package myspring.inheritance;
 
 import myspring.util.MyUtil;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import bean.inheritance.Child;
+
 public class App {
 	public static void main(String[] args) {
 		ClassPathXmlApplicationContext context = (ClassPathXmlApplicationContext) MyUtil.getContext();
-		//BeanForLifecycle bfl = (BeanForLifecycle) context.getBean("BeanForLifecycle");
-		//System.out.println(bfl.getFlag());
-		//context.start();
-		//context.stop();
-		context.registerShutdownHook();
+		Child child = (Child) context.getBean("inheritanceChild");
+		System.out.println("child----"+child.getName());
 	}
 }
