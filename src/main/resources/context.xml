@@ -2,9 +2,16 @@
 <beans  xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xmlns:context="http://www.springframework.org/schema/context"
 		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:lang="http://www.springframework.org/schema/lang"
 		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 							http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-							http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+							http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+							http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd">
+		<!--
+			context: 提供spring的IOC容器功能的标签
+			aop： 提供spring的AOP功能的标签
+			lang: 提供
+		-->
 		<!--支持注解-->
 		<context:annotation-config/>
 		<!--方法注入-->
@@ -62,4 +69,11 @@
 			<!-- <property name="name" value="child"/> -->
 			<property name="age" value="5"/>
 		</bean>
+		
+		<!--BeanPostProcessor-->
+		<lang:groovy id="messenger" script-source="classpath:bean/groovy/GroovyMessenger.groovy">
+			<lang:property name="message" value="I Can Do The Frug" />
+		</lang:groovy>
+		
+		<bean id="MyBeanPostProcessor" class="bean.beanPostProcessor.MyBeanPostProcessor"/>
 </beans>
