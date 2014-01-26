@@ -70,10 +70,23 @@
 			<property name="age" value="5"/>
 		</bean>
 		
-		<!--BeanPostProcessor-->
-		<lang:groovy id="messenger" script-source="classpath:bean/groovy/GroovyMessenger.groovy">
+		<!--Dynamic Language Support-->
+		<lang:groovy id="messenger" script-source="classpath:bean/groovy/GroovyMessenger.groovy" refresh-check-delay="500">
 			<lang:property name="message" value="I Can Do The Frug" />
 		</lang:groovy>
-		
+		<!--BeanPostProcessor-->
 		<bean id="MyBeanPostProcessor" class="bean.beanPostProcessor.MyBeanPostProcessor"/>
+		
+		<!--BeanFactoryPostProcessor-->
+		<!--重写属性-->
+		<!-- <context:property-override location="classpath:bean/beanFactoryPostProcessor/override.properties"/> -->
+		<!--替换占位符-->
+		<context:property-placeholder location="classpath:bean/beanFactoryPostProcessor/placeholder.properties"/>
+		
+		<bean id="beanFactoryProcessorBean" class="bean.beanFactoryPostProcessor.Bean">
+			<property name="s" value="${JAVA_HOME}"/>
+		</bean>
+		
+		<!--Customizing instantiation logic with a FactoryBean-->
+		<bean id="myBeanFactory" class="bean.customizingBeanFactory.MyBeanFactory"/>
 </beans>

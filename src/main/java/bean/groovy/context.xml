@@ -6,8 +6,7 @@
 		<!--BeanPostProcessor-->
 		<bean id="MyBeanPostProcessor" class="bean.groovy.MyBeanPostProcessor"/>
 		
-		<lang:groovy id="mymessenger" script-source="bean/groovy/GroovyMessenger.groovy">
-			<lang:property name="message" value="I Can Do The Frug" />
+		<lang:groovy id="mymessenger" script-source="bean/groovy/GroovyMessenger.groovy" refresh-check-delay="500">
 		</lang:groovy>
 		
 		

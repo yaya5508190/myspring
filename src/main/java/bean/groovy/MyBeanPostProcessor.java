@@ -2,9 +2,8 @@ package bean.groovy;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
-import org.springframework.scripting.support.ScriptFactoryPostProcessor;
 
-public class MyBeanPostProcessor extends ScriptFactoryPostProcessor{
+public class MyBeanPostProcessor implements BeanPostProcessor{
 	int i = 0;
 	@Override
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
