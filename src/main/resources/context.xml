@@ -13,6 +13,12 @@
 			lang: 提供
 		-->
 		<!--支持注解-->
+		<!--相当于注册了一下四个后置处理器
+			AutowiredAnnotationBeanPostProcessor
+			CommonAnnotationBeanPostProcessor 
+			PersistenceAnnotationBeanPostProcessor
+			RequiredAnnotationBeanPostProcessor 
+		-->
 		<context:annotation-config/>
 		<!--方法注入-->
 		<bean id="superBean" class="bean.methodInjection.SuperBean">
@@ -89,4 +95,11 @@
 		
 		<!--Customizing instantiation logic with a FactoryBean-->
 		<bean id="myBeanFactory" class="bean.customizingBeanFactory.MyBeanFactory"/>
+		
+		
+		<!--Annotation-based container configuration-->
+		<bean id="annotationBeanA" class="bean.annotation.BeanA"/>
+		<bean id="annotationBeanB" class="bean.annotation.BeanB">
+			<!-- <property name="string" value="BeanB"/> -->
+		</bean>
 </beans>
