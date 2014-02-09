@@ -1,17 +1,13 @@
-package bean.annotation;
-
-import org.springframework.beans.factory.annotation.Required;
+package bean.annotation.autowired;
 
 public class BeanB {
-	String string;
+	String string = "BeanB";
 
 	public String getString() {
 		return string;
 	}
 
-	@Required
 	public void setString(String string) {
 		this.string = string;
 	}
-
 }

@@ -85,21 +85,31 @@
 		
 		<!--BeanFactoryPostProcessor-->
 		<!--重写属性-->
-		<!-- <context:property-override location="classpath:bean/beanFactoryPostProcessor/override.properties"/> -->
+		<context:property-override location="classpath:bean/beanFactoryPostProcessor/override.properties"/>
 		<!--替换占位符-->
 		<context:property-placeholder location="classpath:bean/beanFactoryPostProcessor/placeholder.properties"/>
 		
 		<bean id="beanFactoryProcessorBean" class="bean.beanFactoryPostProcessor.Bean">
-			<property name="s" value="${JAVA_HOME}"/>
+			<!-- <property name="s" value="${JAVA_HOME}"/> -->
 		</bean>
 		
 		<!--Customizing instantiation logic with a FactoryBean-->
-		<bean id="myBeanFactory" class="bean.customizingBeanFactory.MyBeanFactory"/>
+		<bean id="myFactoryBean" class="bean.customizingFactoryBean.MyFactoryBean"/>
 		
 		
 		<!--Annotation-based container configuration-->
-		<bean id="annotationBeanA" class="bean.annotation.BeanA"/>
-		<bean id="annotationBeanB" class="bean.annotation.BeanB">
-			<!-- <property name="string" value="BeanB"/> -->
+		<!--AutoWired-->
+		<bean id="autowiredBeanA" class="bean.annotation.autowired.BeanA"/>
+		<bean id="autowiredBeanB" class="bean.annotation.autowired.BeanB"/>
+		<bean id="autowiredBeanB1" class="bean.annotation.autowired.BeanB">
+			<property name="string" value="autowiredBeanB1"/>
 		</bean>
+		<bean id="autowiredBeanB2" class="bean.annotation.autowired.BeanB">
+			<property name="string" value="autowiredBeanB2"/>
+		</bean>
+		<bean id="autowiredBeanB3" class="bean.annotation.autowired.BeanB">
+			<property name="string" value="autowiredBeanB3"/>
+		</bean>
+		<bean id="autowiredBeanC" class="bean.annotation.autowired.BeanC"/>
+		<bean id="autowiredBeanD" class="bean.annotation.autowired.BeanD"/>
 </beans>

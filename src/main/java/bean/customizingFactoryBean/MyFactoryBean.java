@@ -1,8 +1,8 @@
-package bean.customizingBeanFactory;
+package bean.customizingFactoryBean;
 
 import org.springframework.beans.factory.FactoryBean;
 
-public class MyBeanFactory implements FactoryBean<String>{
+public class MyFactoryBean implements FactoryBean<String>{
 
 	@Override
 	public String getObject() throws Exception {
