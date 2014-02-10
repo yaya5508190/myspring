@@ -4,16 +4,18 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-@Service("beanA")
+//如果不定义注解的value 则默认以注解所标识的字段 类或方法的名字首字母小写为名字
+@Service
 public class BeanA {
-	BeanB bean;
+	BeanB beanB;
 
-	public BeanB getBean() {
-		return bean;
+	public BeanB getBeanB() {
+		return beanB;
 	}
-	
+
 	@Resource
-	public void setBean(BeanB bean) {
-		this.bean = bean;
+	public void setBeanB(BeanB beanB) {
+		this.beanB = beanB;
 	}
+
 }

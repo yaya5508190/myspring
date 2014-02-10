@@ -1,10 +1,12 @@
 package bean.annotation.components;
 
-import org.springframework.stereotype.Repository;
+public class TestBean {
+	String name;
 
-@Repository
-public class BeanB {
-	String name = "BeanB";
+	public TestBean(String name) {
+		super();
+		this.name = name;
+	}
 
 	public String getName() {
 		return name;
