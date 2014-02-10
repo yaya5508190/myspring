@@ -60,9 +60,9 @@
 		</bean>
 		
 		<!--lifecycleMechanisms-->
-		<!--<bean id="lifeBean" class="bean.lifecycleMechanisms.Bean" init-method="init" destroy-method="des"></bean>-->
+		<!--<bean id="lifeBean" class="bean.lifecycleMechanisms.Bean" init-method="init" destroy-method="des"></bean> -->
 		
-		<!--<bean id="BeanForLifecycle" class="bean.lifecycleMechanisms.BeanForLifecycle"></bean>-->
+		<bean id="BeanForLifecycle" class="bean.lifecycleMechanisms.BeanForLifecycle"></bean>
 		
 		<!--inheritance-->
 		<!-- 可以不指定class 直接定义抽象类-->
@@ -80,8 +80,8 @@
 		<lang:groovy id="messenger" script-source="classpath:bean/groovy/GroovyMessenger.groovy" refresh-check-delay="500">
 			<lang:property name="message" value="I Can Do The Frug" />
 		</lang:groovy>
-		<!--BeanPostProcessor-->
-		<bean id="MyBeanPostProcessor" class="bean.beanPostProcessor.MyBeanPostProcessor"/>
+		<!--BeanPostProcessor bean后置处理器-->
+		<!-- <bean id="MyBeanPostProcessor" class="bean.beanPostProcessor.MyBeanPostProcessor"/> -->
 		
 		<!--BeanFactoryPostProcessor-->
 		<!--重写属性-->
@@ -112,4 +112,48 @@
 		</bean>
 		<bean id="autowiredBeanC" class="bean.annotation.autowired.BeanC"/>
 		<bean id="autowiredBeanD" class="bean.annotation.autowired.BeanD"/>
+		
+		<!--Qualifier-->
+		<bean id="actionVshMovie" class="bean.annotation.autowired.MovieCatalog">
+			<qualifier type="MovieQualifier">
+				<attribute key="genre" value="action"/>
+				<attribute key="format" value="VSH"/>
+			</qualifier>
+			<property name="name" value="actionVshMovie"/>
+		</bean>
+		<bean id="comedyVshMovie" class="bean.annotation.autowired.MovieCatalog">
+			<qualifier type="MovieQualifier">
+				<attribute key="genre" value="comedy"/>
+				<attribute key="format" value="VSH"/>
+			</qualifier>
+			<property name="name" value="comedyVshMovie"/>
+		</bean>
+		<bean id="actionDvdMovie" class="bean.annotation.autowired.MovieCatalog">
+			<qualifier type="MovieQualifier">
+				<attribute key="genre" value="action"/>
+				<attribute key="format" value="DVD"/>
+			</qualifier>
+			<property name="name" value="actionDvdMovie"/>
+		</bean>
+		<bean id="comedyDvdMovie" class="bean.annotation.autowired.MovieCatalog">
+			<qualifier type="MovieQualifier">
+				<attribute key="genre" value="comedy"/>
+				<attribute key="format" value="DVD"/>
+			</qualifier>
+			<property name="name" value="comedyDvdMovie"/>
+		</bean>
+		
+		<bean id="testCustomQualifier" class="bean.annotation.autowired.MovieCatalog">
+			<property name="name" value="CustomQualifier"/>
+		</bean>
+		<bean id="MovieRecommender" class="bean.annotation.autowired.MovieRecommender"/>
+
+	<!--只有只设置value属性的注解才需要在CustomAutowireConfigurer中注册 意义不大-->
+	<bean id="customAutowireConfigurer" class="org.springframework.beans.factory.annotation.CustomAutowireConfigurer">
+		<property name="customQualifierTypes">
+			<set>
+				<value>bean.annotation.autowired.customQualifier</value>
+			</set>
+		</property>
+	</bean>
 </beans>
