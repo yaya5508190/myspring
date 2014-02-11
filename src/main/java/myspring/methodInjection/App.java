@@ -17,6 +17,7 @@ public class App
     	ClassPathXmlApplicationContext context = (ClassPathXmlApplicationContext) MyUtil.getContext();
     	testEqual(context,"superBean");
     	testEqual(context,"beanA");
+    	testEqual(context,"proxyBeanA");
     }
     
     public static void testEqual(ClassPathXmlApplicationContext context,String beanName){

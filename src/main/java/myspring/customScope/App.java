@@ -24,10 +24,12 @@ public class App {
 		
 		//直接将对象注入到线程内部 推荐 更符合spring的风格
 		ClassPathXmlApplicationContext context = (ClassPathXmlApplicationContext) MyUtil.getContext();
-		Thread t1 = (Thread) context.getBean("myThread1");
-		Thread t2 = (Thread) context.getBean("myThread1");
-		Thread t3 = (Thread) context.getBean("myThread1");
-		
+		MyThread1 t1 = (MyThread1) context.getBean("myThread1");
+		MyThread1 t2 = (MyThread1) context.getBean("myThread1");
+		MyThread1 t3 = (MyThread1) context.getBean("myThread1");
+		System.out.println(t1.getBean()==t2.getBean());
+		System.out.println(t2.getBean()==t3.getBean());
+		System.out.println(t1.getBean()==t3.getBean());
 		t1.start();
 		t2.start();
 		t3.start();

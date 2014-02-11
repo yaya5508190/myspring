@@ -21,6 +21,7 @@
 		-->
 		<context:annotation-config/>
 		<!--方法注入-->
+		<!--方法注入的beanB的hashcode是不同的-->
 		<bean id="superBean" class="bean.methodInjection.SuperBean">
 			<lookup-method name="getBeanB" bean="beanB"/>
 		</bean>
@@ -28,6 +29,14 @@
 			<property name="beanB" ref="beanB"/>
 		</bean>
 		<bean id="beanB" class="bean.methodInjection.BeanB" scope="prototype"></bean>
+		<!-- 以<aop:scoped-proxy/> 的方式实现上述的效果使短生命周期的bean可以正确的注入到长生命周期的bean内-->
+		<!-- 这种形式的注入的不同BeanB是hashcode是相同的但是实际内部的变量是不同的 动态代理 -->
+		<bean id="proxyBeanA" class="bean.methodInjection.BeanA">
+			<property name="beanB" ref="proxyBeanB"/>
+		</bean>
+		<bean id="proxyBeanB" class="bean.methodInjection.BeanB" scope="prototype">
+			<aop:scoped-proxy/>
+		</bean>
 		<!--ref与idref的区别-->
 		<bean id="refbeanA" class="bean.refAndIdref.BeanA" >
 			<property name="beanBId">
@@ -149,6 +158,7 @@
 		<bean id="MovieRecommender" class="bean.annotation.autowired.MovieRecommender"/>
 
 	<!--只有只设置value属性的注解才需要在CustomAutowireConfigurer中注册 意义不大-->
+	<!--勘误 在xml配置中上述说法是可以的 在注解的配置中 必须得配置自定义的qualifier否则不认 也许是bug -->
 	<bean id="customAutowireConfigurer" class="org.springframework.beans.factory.annotation.CustomAutowireConfigurer">
 		<property name="customQualifierTypes">
 			<set>

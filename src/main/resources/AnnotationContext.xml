@@ -5,7 +5,17 @@
 	xsi:schemaLocation=
 		"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-
-	<context:component-scan base-package="bean.annotation.components" >
-	</context:component-scan>
+	<!--这里的设置只针对@Component, @Repository, @Service,@Controller这四个注解生效 对@Component中的@bean定义无法生效 可能不在一个容器内-->
+	<context:component-scan base-package="bean.annotation.components" scoped-proxy="targetClass"/>
+	<!-- <context:component-scan base-package="bean.annotation.components" name-generator="bean.myBeanNameGenerator.MyBeanNameGenerator"/> -->
+	<!-- <bean id="MyBeanPostProcessor" class="bean.beanPostProcessor.MyBeanPostProcessor"/> -->
+	<!--在注解形式的qualifier中 必须得注册自定义的qualifier-->
+	<!-- 尽量用jsr250的@resources标准 以类名来区分 -->
+	<bean id="customAutowireConfigurer" class="org.springframework.beans.factory.annotation.CustomAutowireConfigurer">
+		<property name="customQualifierTypes">
+			<set>
+				<value>bean.annotation.components.MovieQualifier</value>
+			</set>
+		</property>
+	</bean>
 </beans>

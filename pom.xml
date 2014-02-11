@@ -46,6 +46,12 @@
 			<artifactId>groovy-all</artifactId> 
 			<version>1.5.0</version>
 		</dependency>
+		<!--jsr330 java官方的注入注解-->
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
 	</dependencies>
 	<!--设定编译版本-->
 	<build>
