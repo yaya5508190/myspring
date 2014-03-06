@@ -10,7 +10,8 @@ public class i18nConfig {
 	@Bean(name = "messageSource")
 	public MessageSource getMessageSource(){
 		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-		messageSource.setBasenames("bean/messageSource/language_zh_CN","bean/messageSource/language_en_US");
+		//不用添加全文件名
+		messageSource.setBasenames("bean/messageSource/language");
 		return messageSource;
 	}
 }

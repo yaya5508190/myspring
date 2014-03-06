@@ -13,7 +13,7 @@ public class App {
 		MessageSource messageSource = context;
 		Locale zhLocale = new Locale("zh", "CN");
 		Locale enLocale = new Locale("en", "US");
-		String message = messageSource.getMessage("text", new String[]{"hello"},enLocale);
+		String message = messageSource.getMessage("text", new String[]{"hello"},zhLocale);
 		System.out.println(message);
 	}
 }
