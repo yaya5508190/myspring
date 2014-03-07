@@ -36,12 +36,14 @@ public class App {
 		context.scan("bean.validator");
 		context.refresh();
 		CustomValidator validator = (CustomValidator) context.getBean("validator");
+		DefaultMessageCodesResolver res = (DefaultMessageCodesResolver) context.getBean("resolver");
 		Person person = new Person();
 		Errors errors = new BeanPropertyBindingResult(person, "person");
 		validator.validate(person, errors);
 		List list = errors.getAllErrors();
 		for (int i = 0; i < list.size(); i++) {
-			System.out.println(((ObjectError)list.get(i)).getCode());
+			for(String s : res.resolveMessageCodes(((ObjectError)list.get(i)).getCode(), "persion", "name", String.class))
+			System.out.println(s);
 		}
 	}
 }

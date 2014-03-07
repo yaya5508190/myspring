@@ -11,7 +11,7 @@ public class validatorConfig {
 		return new CustomValidator();
 	}
 	
-	@Bean
+	@Bean(name="resolver")
 	public DefaultMessageCodesResolver getDefaultMessageCodesResolver(){
 		DefaultMessageCodesResolver res = new DefaultMessageCodesResolver();
 		res.setPrefix("error:");
